@@ -6,7 +6,7 @@
 // myIFrame.src = myIFrameUrl + '?timestamp=' + new Date().getTime();
 
 const output = document.getElementById("html-output");
-const input = document.getElementById("rst-input2");
+const input = document.getElementById("rst-input");
 
 output.value = "Initializing...\n";
 
@@ -24,12 +24,13 @@ async function rstToHtml() {
     // TODO: also load pygments for syntax highlighting
     await pyodide.loadPackage("docutils");
 
+    pyodide.globals.set('input_text', input.value);
+
     let result = await pyodide.runPythonAsync(`
       # https://stackoverflow.com/a/6654576/266309
       from docutils.core import publish_string
       # https://stackoverflow.com/a/606199/266309 → decode bytestring to plain string
-      publish_string("${input.value}".encode('utf-8'), writer_name='html5').decode("utf-8")
-      # TODO: figure out a way to pass multiline string (from the textarea)
+      publish_string(input_text, writer_name='html5').decode("utf-8")
       # TODO: change to publish_doctree() + cleanup + publish_from_doctree()
       #       (see https://docutils.sourceforge.io/docs/api/publisher.html)
       #       so that the output can be just the plain inner content and not have to be placed in an iframe

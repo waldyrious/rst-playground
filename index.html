@@ -16,14 +16,10 @@
     <form>
       <label for="rst-input">reStructuredText input</label>
       <label for="html-output">HTML output</label>
-      <textarea name="rst_input" id="rst-input" disabled></textarea><!--temporarily disabled because I can't get multiline input to work yet"-->
+      <textarea name="rst_input" id="rst-input"></textarea>
       <output name="html_output" id="html-output" for="rst-source"></output>
     </form>
     <hr/>
-    <!-- trying an input element as a stopgap,
-         since I haven't yet figured out how to process a multiline input string
-         into the publish_string() method -->
-    <input id="rst-input2" type="text"></input>
     <iframe id="iframe0" src="" frameborder="0"></iframe> <!-- src="data:text/html,<p>WHAT??</p>" -->
     <button onclick="rstToHtml()">Run</button>
 
