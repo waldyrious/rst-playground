@@ -4,21 +4,7 @@
     <meta charset="utf-8" />
     <title>Live rST playground</title>
     <script src="https://cdn.jsdelivr.net/pyodide/v0.21.3/full/pyodide.js"></script>
-    <style>
-      form {
-        margin: 1em 0.5em;
-        display: grid;
-        grid-template-columns: calc((100% - 1em) / 2) calc((100% - 1em) / 2);
-        column-gap: 1em;
-      }
-      textarea, output {
-        border: 1px solid grey;
-        border-radius: 3px;
-        padding: 0.5em;
-        margin: 0;
-      }
-      output { white-space: pre; }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     This is a demo of rendering reStructuredText (rST) to HTML entirely in the browser,
