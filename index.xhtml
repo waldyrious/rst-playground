@@ -7,20 +7,23 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    This is a demo of rendering reStructuredText (rST) to HTML entirely in the browser,
-    using <a href="https://pyodide.org">Pyodide</a>
-    to run <a href="https://docutils.sourceforge.io">docutils</a>.
-    Source code <a href="https://pyodide.org">on GitHub</a>.
-
-    <!-- <form oninput="html_output.value=rst_input.value"> -->
-    <form>
-      <label for="rst-input">reStructuredText input</label>
-      <label for="html-output">HTML output</label>
-      <textarea name="rst_input" id="rst-input"></textarea>
-      <iframe id="html-output"></iframe>
-    </form>
-    <button onclick="rstToHtml()">Run</button>
-
+    <p>
+      This is a demo of rendering reStructuredText (rST) to HTML entirely in the browser,
+      using <a href="https://pyodide.org">Pyodide</a>
+      to run <a href="https://docutils.sourceforge.io">docutils</a>.
+      Source code <a href="https://pyodide.org">on GitHub</a>.
+    </p>
+    <div class="form">
+      <div>
+        <label for="rst-input">reStructuredText input</label>
+        <textarea name="rst_input" id="rst-input"></textarea>
+        <button onclick="rstToHtml()">Run</button>
+      </div>
+      <div>
+        <label for="html-output">HTML output</label>
+        <iframe id="html-output" frameborder="0"></iframe>
+      <div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
