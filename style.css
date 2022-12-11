@@ -1,0 +1,13 @@
+form {
+  margin: 1em 0.5em;
+  display: grid;
+  grid-template-columns: calc((100% - 1em) / 2) calc((100% - 1em) / 2);
+  column-gap: 1em;
+}
+textarea, output {
+  border: 1px solid grey;
+  border-radius: 3px;
+  padding: 0.5em;
+  margin: 0;
+}
+output { white-space: pre; }
