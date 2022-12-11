@@ -17,10 +17,8 @@
       <label for="rst-input">reStructuredText input</label>
       <label for="html-output">HTML output</label>
       <textarea name="rst_input" id="rst-input"></textarea>
-      <output name="html_output" id="html-output" for="rst-source"></output>
+      <iframe id="html-output"></iframe>
     </form>
-    <hr/>
-    <iframe id="iframe0" src="" frameborder="0"></iframe> <!-- src="data:text/html,<p>WHAT??</p>" -->
     <button onclick="rstToHtml()">Run</button>
 
     <script src="script.js"></script>

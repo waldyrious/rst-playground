@@ -4,10 +4,12 @@ form {
   grid-template-columns: calc((100% - 1em) / 2) calc((100% - 1em) / 2);
   column-gap: 1em;
 }
-textarea, output {
+textarea, iframe {
   border: 1px solid grey;
   border-radius: 3px;
   padding: 0.5em;
   margin: 0;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
 }
-output { white-space: pre; }
