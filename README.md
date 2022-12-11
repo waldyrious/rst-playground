@@ -1,0 +1,10 @@
+- [Though there are various implementations of rST parsers](https://stackoverflow.com/questions/2746692/restructuredtext-tool-support), the reference/canonical one seems to be `docutils`, which includes, among other modules, `rst2html` (converts from reStructuredText to HTML)
+- [There doesn't seem to be](https://stackoverflow.com/questions/16335197/are-there-any-restructuredtext-to-html-parseror-library-perhaps-written-in-j) any JavaScript-only implementation which could be used in fully client-side browser app
+- Existing browser-based playgrounds called back to a server-side renderer
+  - Note: "called" is in the past tense because [rst.ninjs.org](http://rst.ninjs.org) ([anru/rsted](https://github.com/anru/rsted)), and [livesphinx.herokuapp.com](https://livesphinx.herokuapp.com/) ([readthedocs/livesphinx](https://github.com/readthedocs/livesphinx)), a fork of the former, are both defunct as of Dec 2022
+- There is [seikichi.github.io/restructured](https://seikichi.github.io/restructured/) which does work fully in-browser, but it's incomplete and unmaintained
+- [rst-live-preview](https://github.com/frantic1048/rst-live-preview) is a Node.js CLI tool that [relies](https://github.com/frantic1048/rst-live-preview/blob/42fac86586469964c06dcd867db714e35d97a3ec/rst-loader.js#L17) on a Python CLI tool ([rst2html5](https://github.com/marianoguerra/rst2html5/) — attention, this is not docutil's `rst2html`, though see [this](https://github.com/marianoguerra/rst2html5/issues/20) and [this](https://github.com/marianoguerra/rst2html5/issues/87))
+- This project started as an experiment to see if one could directly run `rst2html` the in the browser, using Pyodide. 🤔
+- Pyodide has the relevant [packages](https://pyodide.org/en/0.19.1/usage/packages-in-pyodide.html) (docutils and pygments). See docs: [Loading packages](https://pyodide.org/en/0.19.1/usage/loading-packages.html#loading-packages).
+
+**STATUS**: very rough prototype: it does use Pyodide to call docutils and shows the resulting HTML (in an iframe) but there are several problems, most notably the inability to process multiline strings. There are some comments and TODOs in the code.

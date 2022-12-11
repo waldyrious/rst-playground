@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html><!-- TODO: convert back to XHTML: <html xmlns="http://www.w3.org/1999/xhtml" lang="en"> -->
+  <head>
+    <meta charset="utf-8" />
+    <title>Live rST playground</title>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.21.3/full/pyodide.js"></script>
+    <style>
+      form {
+        margin: 1em 0.5em;
+        display: grid;
+        grid-template-columns: calc((100% - 1em) / 2) calc((100% - 1em) / 2);
+        column-gap: 1em;
+      }
+      textarea, output {
+        border: 1px solid grey;
+        border-radius: 3px;
+        padding: 0.5em;
+        margin: 0;
+      }
+      output { white-space: pre; }
+    </style>
+  </head>
+  <body>
+    This page renders rST to HTML in the browser, using Pyodide to run <code>docutils</code>.
+    <!-- <form oninput="html_output.value=rst_input.value"> -->
+    <form>
+      <label for="rst-input">reStructuredText input</label>
+      <label for="html-output">HTML output</label>
+      <textarea name="rst_input" id="rst-input" disabled></textarea><!--temporarily disabled because I can't get multiline input to work yet"-->
+      <output name="html_output" id="html-output" for="rst-source"></output>
+    </form>
+    <hr/>
+    <!-- trying an input element as a stopgap,
+         since I haven't yet figured out how to process a multiline input string
+         into the publish_string() method -->
+    <input id="rst-input2" type="text"></input>
+    <iframe id="iframe0" src="" frameborder="0"></iframe> <!-- src="data:text/html,<p>WHAT??</p>" -->
+    <button onclick="rstToHtml()">Run</button>
+
+    <script>
+      // Attempt to prevent caching of the iframe source
+      // https://stackoverflow.com/a/52507285/266309
+      // This seems to break the page upon reload...
+      // var myIFrame = document.getElementById("output-iframe");
+      // myIFrameUrl = myIFrame.contentWindow.location.href;
+      // myIFrame.src = myIFrameUrl + '?timestamp=' + new Date().getTime();
+
+      const output = document.getElementById("html-output");
+      const input = document.getElementById("rst-input2");
+
+      output.value = "Initializing...\n";
+
+      // init Pyodide
+      async function main() {
+        let pyodide = await loadPyodide();
+        output.value += "Ready!\n";
+        return pyodide;
+      }
+      let pyodideReadyPromise = main();
+
+      async function rstToHtml() {
+        let pyodide = await pyodideReadyPromise;
+        try {
+          // TODO: also load pygments for syntax highlighting
+          await pyodide.loadPackage("docutils");
+
+          let result = await pyodide.runPythonAsync(`
+            # https://stackoverflow.com/a/6654576/266309
+            from docutils.core import publish_string
+            # https://stackoverflow.com/a/606199/266309 → decode bytestring to plain string
+            publish_string("${input.value}".encode('utf-8'), writer_name='html5').decode("utf-8")
+            # TODO: figure out a way to pass multiline string (from the textarea)
+            # TODO: change to publish_doctree() + cleanup + publish_from_doctree()
+            #       (see https://docutils.sourceforge.io/docs/api/publisher.html)
+            #       so that the output can be just the plain inner content and not have to be placed in an iframe
+          `);
+          // Set HTML document as the contents of an iframe
+          // https://stackoverflow.com/a/4199540/266309
+          iframe = document.getElementById("iframe0").contentDocument;
+          iframe.open();
+          iframe.write(result);
+          iframe.close();
+        } catch (err) {
+          output.value = err;
+        }
+      }
+    </script>
+  </body>
+</html>
