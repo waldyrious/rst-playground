@@ -1,7 +1,7 @@
 const inputTextarea = document.getElementById("rst-input");
 const outputFrame = document.getElementById("html-output");
 
-outputFrame.contentDocument.write("Initializing...\n");
+outputFrame.contentDocument.write("<!DOCTYPE html> Initializing...\n");
 
 // init Pyodide
 async function main() {
