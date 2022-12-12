@@ -31,8 +31,11 @@ More detailed background:
 
 ## Status
 
-Very rough prototype: The webpage is live at <https://waldyrious.github.io/rst-playground>,
-and it does use Pyodide to call docutils and show the resulting HTML (in an iframe)
-but there are several problems, most notably the inability to process multiline strings.
-There are some comments and TODOs in the code,
-which should be converted into proper issues.
+A basic prototype is up and running.
+The webpage is live at <https://waldyrious.github.io/rst-playground>.
+It uses [Pyodide](https://pyodide.org) to call [docutils](https://docutils.sourceforge.io)
+to convert rST content entered into the `<textarea>` on the left,
+and shows the resulting HTML in the `<iframe>` on the right.
+
+Check the [open issues](https://github.com/waldyrious/rst-playground/issues) for planned improvements.
+Pull requests are welcome!
