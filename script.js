@@ -17,8 +17,10 @@ let pyodideReadyPromise = main();
 async function rstToHtml() {
   let pyodide = await pyodideReadyPromise;
   try {
-    // TODO: also load pygments for syntax highlighting
     await pyodide.loadPackage("docutils");
+    // Add pygments to support code blocks with language specifiers
+    // (they automatically trigger syntax highlighting)
+    await pyodide.loadPackage("pygments");
 
     pyodide.globals.set('input_text', inputTextarea.value);
 
