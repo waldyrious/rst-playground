@@ -12,26 +12,27 @@ having stopped working as of December 2022,
 and because I am more used to markdown and too lazy to learn rST properly,
 so I find myself often needing such a playground
 where I can try out the syntax and see how it renders.
-(Also because I've been curious about Pyodide for a while, so it was an opportunity to give it a try.)
+(Also because I've been curious about [Pyodide](https://pyodide.org) for a while,
+so it was an opportunity to give it a try.)
 
 More detailed background:
 
 - [Though there are various implementations of rST parsers](https://stackoverflow.com/q/2746692/266309),
   the reference/canonical one seems to be [docutils](https://docutils.sourceforge.io),
-  which includes, among other modules, `rst2html` (converts from reStructuredText to HTML)
-- Existing browser-based playgrounds called back to a server-side renderer in Python, also relying on `docutils`
+  which includes, among other modules, `rst2html` (converts from reStructuredText to HTML).
+- Existing browser-based playgrounds called back to a server-side renderer in Python, also relying on `docutils`.
   - Note: "called" is in the past tense because both
     [rst.ninjs.org](http://rst.ninjs.org)
     (source: [anru/rsted](https://github.com/anru/rsted)),
     and [livesphinx.herokuapp.com](https://livesphinx.herokuapp.com/), a fork of the former,
     (source: [readthedocs/livesphinx](https://github.com/readthedocs/livesphinx))
-    are defunct as of December 2022
+    are defunct as of December 2022.
 - [There doesn't seem to be](https://stackoverflow.com/q/16335197/266309)
-  any pure JavaScript implementation which could be used in a fully client-side browser app
+  any pure JavaScript implementation which could be used in a fully client-side browser app.
   - There is [seikichi.github.io/restructured](https://seikichi.github.io/restructured/),
     which does work fully in-browser,
     but it's [incomplete](https://github.com/seikichi/restructured/#progress)
-    and [unmaintained](https://github.com/seikichi/restructured/issues/15)
+    and [unmaintained](https://github.com/seikichi/restructured/issues/15).
   - [docutils-js](https://github.com/docutils-js/docutils-js) is an attempt to port `docutils` to JavaScript,
     but it's also [incomplete](https://github.com/docutils-js/docutils-js#addendum),
     and appears to be abandoned as well.
