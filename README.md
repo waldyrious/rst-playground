@@ -1,6 +1,6 @@
 # rst-playground
 
-This is an attempt at providing a fully browser-based reStructuredText playground
+A fully browser-based reStructuredText playground
 that anyone can use without setting up a server.
 Try it out at <https://waldyrious.github.io/rst-playground>.
 
