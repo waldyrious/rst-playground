@@ -35,6 +35,14 @@ async function rstToHtml() {
     `);
 
     outputFrame.srcdoc = result;
+
+    // Override Docutils' default style, which adds a grey background to the body element.
+    // We need to wait until the iframe's load event; see https://stackoverflow.com/a/13959836/266309.
+    outputFrame.addEventListener("load", event => {
+      const newStyle = outputFrame.contentDocument.createElement("style");
+      newStyle.textContent = "body { background-color: unset; }";
+      event.target.contentDocument.head.appendChild(newStyle);
+    });
   } catch (err) {
     const pre = document.createElement('pre');
     pre.textContent = err;
