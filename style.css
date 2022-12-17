@@ -1,8 +1,11 @@
+body {
+  margin: 1em;
+}
 form {
-  margin: 1em 0.5em;
+  margin-bottom: 1em;
   display: grid;
   grid-template-columns: repeat(2, calc((100% - 1em) / 2));
-  grid-template-rows: auto calc(100vh - 8em);
+  grid-template-rows: auto calc(100vh - 9em);
   column-gap: 1em;
 }
 textarea, iframe {
