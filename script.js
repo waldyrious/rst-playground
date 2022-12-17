@@ -3,7 +3,7 @@ const outputFrame = document.getElementById("html-output");
 
 outputFrame.contentDocument.write("<!DOCTYPE html> Initializing...\n");
 
-// init Pyodide
+// Initialize Pyodide
 async function main() {
   let pyodide = await loadPyodide();
   outputFrame.contentDocument.write("Ready.\n");
@@ -22,16 +22,18 @@ async function rstToHtml() {
     // (they automatically trigger syntax highlighting)
     await pyodide.loadPackage("pygments");
 
+    // We pass the textarea contents as a variable
+    // instead of interpolating them into the code below.
+    // For the reasoning, see the description of commit 40037ef37.
     pyodide.globals.set('input_text', inputTextarea.value);
 
+    // Python code to parse a rST string into HTML using docutils
+    // as recommended in https://stackoverflow.com/a/6654576/266309.
+    // Note: the `decode()` is needed to convert `publish_string()`'s output
+    // from a bytestring to a plain string. See https://stackoverflow.com/a/606199/266309.
     let result = await pyodide.runPythonAsync(`
-      # https://stackoverflow.com/a/6654576/266309
       from docutils.core import publish_string
-      # https://stackoverflow.com/a/606199/266309 → decode bytestring to plain string
       publish_string(input_text, writer_name='html5').decode("utf-8")
-      # TODO: change to publish_doctree() + cleanup + publish_from_doctree()
-      #       (see https://docutils.sourceforge.io/docs/api/publisher.html)
-      #       so that the output can be just the plain inner content and not have to be placed in an iframe
     `);
 
     outputFrame.srcdoc = result;
