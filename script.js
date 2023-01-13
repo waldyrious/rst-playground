@@ -1,6 +1,11 @@
 const inputTextarea = document.getElementById("rst-input");
 const outputFrame = document.getElementById("html-output");
 
+// Activate controls that are inert if JavaScript is disabled
+inputTextarea.disabled = false;
+inputTextarea.placeholder = "Enter reStructuredText content here."
+document.getElementsByTagName("button")[0].disabled = false;
+document.getElementsByTagName("button")[0].style.visibility = "visible";
 outputFrame.contentDocument.write("<!DOCTYPE html> Initializing...\n");
 
 // Initialize Pyodide
