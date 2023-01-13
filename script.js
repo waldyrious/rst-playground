@@ -40,7 +40,7 @@ async function rstToHtml() {
     // We pass the textarea contents as a variable
     // instead of interpolating them into the code below.
     // For the reasoning, see the description of commit 40037ef37.
-    pyodide.globals.set('input_text', inputTextarea.value);
+    pyodide.globals.set("input_text", inputTextarea.value);
 
     // Python code to parse a rST string into HTML using docutils
     // as recommended in https://stackoverflow.com/a/6654576/266309.
@@ -48,20 +48,20 @@ async function rstToHtml() {
     // from a bytestring to a plain string. See https://stackoverflow.com/a/606199/266309.
     let result = await pyodide.runPythonAsync(`
       from docutils.core import publish_string
-      publish_string(input_text, writer_name='html5').decode("utf-8")
+      publish_string(input_text, writer_name="html5").decode("utf-8")
     `);
 
     outputFrame.srcdoc = result;
 
     // Override Docutils' default style, which adds a grey background to the body element.
     // We need to wait until the iframe's load event; see https://stackoverflow.com/a/13959836/266309.
-    outputFrame.addEventListener("load", event => {
+    outputFrame.addEventListener("load", (event) => {
       const newStyle = outputFrame.contentDocument.createElement("style");
       newStyle.textContent = "body { background-color: unset; }";
       event.target.contentDocument.head.appendChild(newStyle);
     });
   } catch (err) {
-    const pre = document.createElement('pre');
+    const pre = document.createElement("pre");
     pre.textContent = err;
     outputFrame.srcdoc = pre.outerHTML;
   }
