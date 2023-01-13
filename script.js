@@ -8,6 +8,15 @@ document.getElementsByTagName("button")[0].disabled = false;
 document.getElementsByTagName("button")[0].style.visibility = "visible";
 outputFrame.contentDocument.write("<!DOCTYPE html> Initializing...\n");
 
+// Check if the browser supports WebAssembly
+function checkForWebAssembly() {
+  if (!("WebAssembly" in window)) {
+    throw new Error(
+      "This website requires WebAssembly because it depends on Pyodide to run docutils in the browser"
+    );
+  }
+}
+
 // Initialize Pyodide
 async function main() {
   let pyodide = await loadPyodide();
@@ -20,8 +29,9 @@ async function main() {
 let pyodideReadyPromise = main();
 
 async function rstToHtml() {
-  let pyodide = await pyodideReadyPromise;
   try {
+    checkForWebAssembly();
+    let pyodide = await pyodideReadyPromise;
     await pyodide.loadPackage("docutils");
     // Add pygments to support code blocks with language specifiers
     // (they automatically trigger syntax highlighting)
