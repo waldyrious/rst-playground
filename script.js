@@ -19,8 +19,10 @@ function checkForWebAssembly() {
 
 // Initialize Pyodide
 async function main() {
+  const startTime = Date.now();
   let pyodide = await loadPyodide();
-  outputFrame.contentDocument.write("Ready.\n");
+  const elapsedTime = ((Date.now() - startTime) / 1000).toFixed(1);
+  outputFrame.contentDocument.write(`Ready in ${elapsedTime}s.\n`);
   // This makes the browser favicon stop the loading spinner
   outputFrame.contentDocument.close();
 
