@@ -1,11 +1,20 @@
 const inputTextarea = document.getElementById("rst-input");
 const outputFrame = document.getElementById("html-output");
 
+// Debounce function to limit how often rstToHtml is called
+const debounce = (func, delay) => {
+  let debounceTimer;
+  return function() {
+    const context = this;
+    const args = arguments;
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => func.apply(context, args), delay);
+  };
+};
+
 // Activate controls that are inert if JavaScript is disabled
 inputTextarea.disabled = false;
 inputTextarea.placeholder = "Enter reStructuredText content here."
-document.getElementsByTagName("button")[0].disabled = false;
-document.getElementsByTagName("button")[0].style.visibility = "visible";
 outputFrame.contentDocument.write("<!DOCTYPE html> Initializing...\n");
 
 // Check if the browser supports WebAssembly
@@ -25,6 +34,10 @@ async function main() {
   outputFrame.contentDocument.write(`Ready in ${elapsedTime}s.\n`);
   // This makes the browser favicon stop the loading spinner
   outputFrame.contentDocument.close();
+
+  // Set up auto-convert on typing with debounce after Pyodide is ready
+  const debouncedConvert = debounce(rstToHtml, 400);
+  inputTextarea.addEventListener('input', debouncedConvert);
 
   return pyodide;
 }
