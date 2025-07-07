@@ -4,8 +4,6 @@ const outputFrame = document.getElementById("html-output");
 // Activate controls that are inert if JavaScript is disabled
 inputTextarea.disabled = false;
 inputTextarea.placeholder = "Enter reStructuredText content here."
-document.getElementsByTagName("button")[0].disabled = false;
-document.getElementsByTagName("button")[0].style.visibility = "visible";
 outputFrame.contentDocument.write("<!DOCTYPE html> Initializing...\n");
 
 // Check if the browser supports WebAssembly
@@ -26,9 +24,26 @@ async function main() {
   // This makes the browser favicon stop the loading spinner
   outputFrame.contentDocument.close();
 
+  // Trigger rendering whenever the textarea content changes (typing, pasting, etc.)
+  inputTextarea.addEventListener('input', debouncedConvert);
+
   return pyodide;
 }
 let pyodideReadyPromise = main();
+
+// This function runs whenever the input text changes,
+// and schedules the rST-to-HTML conversion after a short delay.
+// Each time it runs, it resets the delay timer — so the conversion
+// only happens once the user stops typing for long enough.
+// (Without this, the conversion would run on every keystroke.)
+let convertTimer; // Define the timer outside the function
+                  // so it can be reused (i.e. reset) across function calls.
+function debouncedConvert() {
+    // Cancel the previous countdown, if any
+    clearTimeout(convertTimer);
+    // Start a new countdown of 300 milliseconds and call rstToHtml() when it ends
+    convertTimer = setTimeout(rstToHtml, 300);
+}
 
 async function rstToHtml() {
   try {
