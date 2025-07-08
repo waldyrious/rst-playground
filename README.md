@@ -59,3 +59,12 @@ and shows the resulting HTML in the `<iframe>` on the right.
 
 Check the [open issues](https://github.com/waldyrious/rst-playground/issues) for planned improvements.
 Pull requests are welcome!
+
+## Contributing
+
+Code formatting is automatically checked on all pull requests using [Prettier](https://prettier.io/).
+If you would like to check the syntax of new code locally before submitting a PR,
+make sure you have Node.js installed, and run `npx prettier@3.6.2 --check .`
+(you can use `--write` instead of `--check` to automatically format the code).
+Besides [Prettier's default configuration](https://prettier.io/docs/options),
+the `.prettierrc.toml` file lists additional rules used in this project.

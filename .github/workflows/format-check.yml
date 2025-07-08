@@ -1,0 +1,22 @@
+name: Code Formatting Check
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  format-check:
+    name: Check code formatting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22" # Current LTS version
+
+      - name: Check code formatting with Prettier
+        run: npx prettier@3.6.2 --check .

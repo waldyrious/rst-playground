@@ -3,7 +3,7 @@ const outputFrame = document.getElementById("html-output");
 
 // Activate controls that are inert if JavaScript is disabled
 inputTextarea.disabled = false;
-inputTextarea.placeholder = "Enter reStructuredText content here."
+inputTextarea.placeholder = "Enter reStructuredText content here.";
 outputFrame.contentDocument.write("<!DOCTYPE html> Initializing...\n");
 
 // Check if the browser supports WebAssembly
@@ -21,31 +21,34 @@ async function main() {
   // Load Pyodide along with the required packages to run docutils.
   // The `pygments` package is included to support code blocks with language specifiers
   // (they automatically trigger syntax highlighting)
-  let pyodide = await loadPyodide({ packages: [ "docutils", "pygments" ] });
+  let pyodide = await loadPyodide({ packages: ["docutils", "pygments"] });
   const elapsedTime = ((Date.now() - startTime) / 1000).toFixed(1);
   outputFrame.contentDocument.write(`Ready in ${elapsedTime}s.\n`);
   // This makes the browser favicon stop the loading spinner
   outputFrame.contentDocument.close();
 
   // Trigger rendering whenever the textarea content changes (typing, pasting, etc.)
-  inputTextarea.addEventListener('input', debouncedConvert);
+  inputTextarea.addEventListener("input", debouncedConvert);
 
   return pyodide;
 }
 let pyodideReadyPromise = main();
 
+// Define the conversion delay timer outside the delaying function itself
+// so it can be reused (i.e. reset) across function calls.
+let convertTimer;
+
+// Debounced (delayed) auto-conversion function.
 // This function runs whenever the input text changes,
 // and schedules the rST-to-HTML conversion after a short delay.
 // Each time it runs, it resets the delay timer — so the conversion
 // only happens once the user stops typing for long enough.
 // (Without this, the conversion would run on every keystroke.)
-let convertTimer; // Define the timer outside the function
-                  // so it can be reused (i.e. reset) across function calls.
 function debouncedConvert() {
-    // Cancel the previous countdown, if any
-    clearTimeout(convertTimer);
-    // Start a new countdown of 300 milliseconds and call rstToHtml() when it ends
-    convertTimer = setTimeout(rstToHtml, 300);
+  // Cancel the previous countdown, if any
+  clearTimeout(convertTimer);
+  // Start a new countdown of 300 milliseconds and call rstToHtml() when it ends
+  convertTimer = setTimeout(rstToHtml, 300);
 }
 
 async function rstToHtml() {
