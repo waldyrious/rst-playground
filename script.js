@@ -18,7 +18,10 @@ function checkForWebAssembly() {
 // Initialize Pyodide
 async function main() {
   const startTime = Date.now();
-  let pyodide = await loadPyodide();
+  // Load Pyodide along with the required packages to run docutils.
+  // The `pygments` package is included to support code blocks with language specifiers
+  // (they automatically trigger syntax highlighting)
+  let pyodide = await loadPyodide({ packages: [ "docutils", "pygments" ] });
   const elapsedTime = ((Date.now() - startTime) / 1000).toFixed(1);
   outputFrame.contentDocument.write(`Ready in ${elapsedTime}s.\n`);
   // This makes the browser favicon stop the loading spinner
@@ -49,10 +52,6 @@ async function rstToHtml() {
   try {
     checkForWebAssembly();
     let pyodide = await pyodideReadyPromise;
-    await pyodide.loadPackage("docutils");
-    // Add pygments to support code blocks with language specifiers
-    // (they automatically trigger syntax highlighting)
-    await pyodide.loadPackage("pygments");
 
     // We pass the textarea contents as a variable
     // instead of interpolating them into the code below.
