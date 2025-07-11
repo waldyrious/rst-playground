@@ -1,5 +1,5 @@
 body {
-  margin: 1em;
+  max-width: unset; /* override max-width from downstyler */
 }
 form {
   margin-bottom: 1em;
@@ -8,10 +8,14 @@ form {
   grid-template-rows: auto calc(100vh - 9em);
   column-gap: 1em;
 }
+textarea {
+  font-family: monospace; /* override font-family from downstyler */
+  font-size-adjust: 0.44;
+}
 textarea,
 output {
   border: 1px solid grey;
-  border-radius: 3px;
+  border-radius: 0 3px 3px 3px;
   padding: 0.5em;
   margin: 0;
   display: block;
@@ -19,4 +23,68 @@ output {
   width: 100%;
   height: 100%;
   overflow-y: auto;
+}
+label {
+  background: LightSkyBlue;
+  width: max-content;
+  padding: 0 0.5em;
+  border-radius: 5px 5px 0 0;
+  font-weight: bold;
+  border: 1px solid gray;
+  border-bottom: none;
+}
+/* Styles for the docutils output */
+output {
+  pre {
+    margin: 0.7em;
+    padding: 0.5em;
+    color: initial;
+  }
+  aside {
+    padding: 0.5em 1em;
+    &.admonition {
+      border-left: thick solid #0074d9;
+      background: #f0f8ff;
+    }
+    &.system-message {
+      border-left: thick solid crimson;
+      background: #fff0f0;
+    }
+    &.footnote-list {
+      border-left: thin solid darkgray;
+      padding: 0 0.3em;
+      margin-block: 0.4em;
+      aside {
+        padding: 0;
+      }
+    }
+    p[class$="-title"] {
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+  }
+  :is(table, aside) :is(p, dl, .line-block) {
+    margin-block: 0.5em;
+  }
+  .docinfo {
+    dt {
+      float: left;
+      clear: left;
+      width: 120px;
+      font-weight: bold;
+    }
+    dd {
+      float: left;
+      margin-left: 0;
+      padding-left: 0.5em;
+      p {
+        margin: 0;
+      }
+    }
+    &::after {
+      content: "";
+      display: block;
+      clear: left;
+    }
+  }
 }
