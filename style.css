@@ -9,7 +9,7 @@ form {
   column-gap: 1em;
 }
 textarea,
-iframe {
+output {
   border: 1px solid grey;
   border-radius: 3px;
   padding: 0.5em;
@@ -18,4 +18,5 @@ iframe {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
+  overflow-y: auto;
 }

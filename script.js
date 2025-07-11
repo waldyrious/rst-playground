@@ -1,10 +1,10 @@
 const inputTextarea = document.getElementById("rst-input");
-const outputFrame = document.getElementById("html-output");
+const outputField = document.getElementById("html-output");
 
 // Activate controls that are inert if JavaScript is disabled
 inputTextarea.disabled = false;
 inputTextarea.placeholder = "Enter reStructuredText content here.";
-outputFrame.contentDocument.write("<!DOCTYPE html> Initializing...\n");
+outputField.value = "Initializing...";
 
 // Check if the browser supports WebAssembly
 function checkForWebAssembly() {
@@ -23,9 +23,7 @@ async function main() {
   // (they automatically trigger syntax highlighting)
   let pyodide = await loadPyodide({ packages: ["docutils", "pygments"] });
   const elapsedTime = ((Date.now() - startTime) / 1000).toFixed(1);
-  outputFrame.contentDocument.write(`Ready in ${elapsedTime}s.\n`);
-  // This makes the browser favicon stop the loading spinner
-  outputFrame.contentDocument.close();
+  outputField.value = `Ready in ${elapsedTime}s.`;
 
   // Trigger rendering whenever the textarea content changes (typing, pasting, etc.)
   inputTextarea.addEventListener("input", debouncedConvert);
@@ -62,26 +60,16 @@ async function rstToHtml() {
     pyodide.globals.set("input_text", inputTextarea.value);
 
     // Python code to parse a rST string into HTML using docutils
-    // as recommended in https://stackoverflow.com/a/6654576/266309.
-    // Note: the `decode()` is needed to convert `publish_string()`'s output
-    // from a bytestring to a plain string. See https://stackoverflow.com/a/606199/266309.
     let result = await pyodide.runPythonAsync(`
-      from docutils.core import publish_string
-      publish_string(input_text, writer_name="html5").decode("utf-8")
+      from docutils.core import publish_parts
+      parts = publish_parts(input_text, writer_name="html5")
+      parts["html_body"]
     `);
 
-    outputFrame.srcdoc = result;
-
-    // Override Docutils' default style, which adds a grey background to the body element.
-    // We need to wait until the iframe's load event; see https://stackoverflow.com/a/13959836/266309.
-    outputFrame.addEventListener("load", (event) => {
-      const newStyle = outputFrame.contentDocument.createElement("style");
-      newStyle.textContent = "body { background-color: unset; }";
-      event.target.contentDocument.head.appendChild(newStyle);
-    });
+    outputField.innerHTML = result;
   } catch (err) {
     const pre = document.createElement("pre");
     pre.textContent = err;
-    outputFrame.srcdoc = pre.outerHTML;
+    outputField.innerHTML = pre.outerHTML;
   }
 }
