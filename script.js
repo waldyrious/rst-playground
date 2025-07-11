@@ -9,9 +9,7 @@ outputField.value = "Initializing...";
 // Check if the browser supports WebAssembly
 function checkForWebAssembly() {
   if (!("WebAssembly" in window)) {
-    throw new Error(
-      "This website requires WebAssembly because it depends on Pyodide to run docutils in the browser"
-    );
+    throw new Error("This website requires WebAssembly because it depends on Pyodide to run docutils in the browser");
   }
 }
 
