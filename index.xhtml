@@ -10,20 +10,28 @@
   </head>
   <body>
     <!-- prettier-ignore -->
-    <p>
-      This is a live playground for rendering
-      <a href="https://docutils.sourceforge.io/rst.html">reStructuredText</a>
-      into HTML entirely in the browser,
-      using <a href="https://pyodide.org">Pyodide</a>
-      to run <a href="https://docutils.sourceforge.io">docutils</a>.
-      Source code <a href="https://github.com/waldyrious/rst-playground">on GitHub</a>.
-      <noscript><mark><b>Note:</b> This page requires JavaScript to work.</mark></noscript>
-    </p>
+    <header>
+      <h1>reStructuredText playground</h1>
+      <p>
+        <strong><a href="https://docutils.sourceforge.io/rst.html">reStructuredText</a></strong> (rST)
+        is a language for marking up plain text — similar to markdown, but more complex and powerful.
+      </p>
+      <p>
+        This <a href="https://github.com/waldyrious/rst-playground">open source</a> tool
+        converts rST content into rich text (HTML)
+        by running <a href="https://docutils.sourceforge.io">docutils</a> (a Python program)
+        in the browser using <a href="https://pyodide.org">Pyodide</a>.
+      </p>
+    </header>
+
     <form>
       <label for="rst-input">reStructuredText input</label>
       <label for="html-output">HTML output</label>
       <textarea name="rst_input" id="rst-input" autofocus="true" disabled="true"></textarea>
-      <output name="html_output" id="html-output" for="rst-input"></output>
+      <output name="html_output" id="html-output" for="rst-input">
+        <!-- prettier-ignore -->
+        <noscript><mark><strong>Note:</strong> This page requires JavaScript to work.</mark></noscript>
+      </output>
     </form>
 
     <script src="script.js"></script>
