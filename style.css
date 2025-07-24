@@ -1,17 +1,13 @@
 body {
   max-width: unset; /* override max-width from downstyler */
 }
-header {
-  margin-bottom: 1em;
-  h1 {
-    margin: 0;
-  }
-  p {
-    margin-block: 0.5em;
-  }
+header > * {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
 }
 form {
-  margin-bottom: 1em;
+  margin-block: 1em;
   display: grid;
   grid-template-columns: repeat(2, calc((100% - 1em) / 2));
   grid-template-rows: auto calc(100vh - 12em);
