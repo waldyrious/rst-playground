@@ -22,16 +22,14 @@
         by running <a href="https://docutils.sourceforge.io">docutils</a> (a Python program)
         in the browser using <a href="https://pyodide.org">Pyodide</a>.
       </p>
+      <noscript><mark><strong>Note:</strong> This page requires JavaScript to work.</mark></noscript>
     </header>
 
     <form>
       <label for="rst-input">reStructuredText input</label>
       <label for="html-output">HTML output</label>
       <textarea name="rst_input" id="rst-input" autofocus="true" disabled="true"></textarea>
-      <output name="html_output" id="html-output" for="rst-input">
-        <!-- prettier-ignore -->
-        <noscript><mark><strong>Note:</strong> This page requires JavaScript to work.</mark></noscript>
-      </output>
+      <iframe id="html-output"></iframe>
     </form>
 
     <script src="script.js"></script>
