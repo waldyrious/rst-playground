@@ -1,0 +1,23 @@
+@import url("vendor/downstyler/downstyler.css");
+
+/* Downstyler overrides */
+body {
+  max-width: unset;
+  padding: unset;
+}
+html {
+  font-size: clamp(1rem, calc(13.6px + 0.85vw), 1.5rem);
+}
+
+/* Docutils overrides */
+body {
+  background-color: unset;
+}
+main {
+  max-width: unset;
+  padding-inline: 0.5em;
+}
+main > :first-child,
+main > section:first-child > :first-child {
+  margin-top: 0.5rem;
+}

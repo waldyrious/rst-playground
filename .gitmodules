@@ -1,0 +1,3 @@
+[submodule "vendor/downstyler"]
+	path = vendor/downstyler
+	url = https://github.com/waldyrious/downstyler.git
