@@ -63,20 +63,21 @@ async function rstToHtml() {
     // See: https://docutils.sourceforge.io/docs/api/publisher.html#publish-string
     // Note: the `decode()` is needed to convert `publish_string()`'s output
     // from a bytestring to a plain string. See https://stackoverflow.com/a/606199/266309.
-    let result = await pyodide.runPythonAsync(`
+    let htmlString = await pyodide.runPythonAsync(`
       from docutils.core import publish_string
       publish_string(input_text, writer_name="html5").decode("utf-8")
     `);
 
-    outputFrame.srcdoc = result;
+    // Modify the output HTML string to include the docutils.css file.
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlString, "text/html");
+    const linkTag = doc.createElement("link");
+    linkTag.rel = "stylesheet";
+    linkTag.href = "docutils.css";
+    doc.head.appendChild(linkTag);
+    htmlString = "<!DOCTYPE html>\n" + doc.documentElement.outerHTML;
 
-    // Override Docutils' default style, which adds a grey background to the body element.
-    // We need to wait until the iframe's load event; see https://stackoverflow.com/a/13959836/266309.
-    outputFrame.addEventListener("load", (event) => {
-      const newStyle = outputFrame.contentDocument.createElement("style");
-      newStyle.textContent = "body { background-color: unset; }";
-      event.target.contentDocument.head.appendChild(newStyle);
-    });
+    outputFrame.srcdoc = htmlString;
   } catch (err) {
     const pre = document.createElement("pre");
     pre.textContent = err;

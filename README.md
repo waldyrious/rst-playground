@@ -96,7 +96,7 @@ Simple changes like typos or minor improvements can be done directly in the GitH
 but for more substantial changes, it's best to clone your fork of the repository and work locally:
 
 ```shell
-git clone https://github.com/<your-username>/rst-playground
+git clone --recurse-submodules https://github.com/<your-username>/rst-playground
 ```
 
 Then, simply open the `index.xhtml` file in your browser.
