@@ -114,6 +114,15 @@ make sure you have Node.js installed, and run `npx prettier . --check`
 Besides [Prettier's default configuration](https://prettier.io/docs/options),
 the [.prettierrc.toml](.prettierrc.toml) file lists additional rules used in this project.
 
+### Automated updates
+
+The project uses automated workflows to keep dependencies up to date:
+
+- **Dependabot** automatically monitors the Downstyler submodule and creates weekly pull requests when updates are available
+- **GitHub Actions** checks for new Pyodide releases weekly and creates pull requests to update the CDN URL in `index.xhtml`
+
+Both workflows run on Mondays and can also be triggered manually via the GitHub Actions interface.
+
 ## License
 
 This project is licensed under the [ISC License](LICENSE.md).
