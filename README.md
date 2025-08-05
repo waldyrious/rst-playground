@@ -29,6 +29,7 @@ The following table summarizes how the repository is organized.
 | _Config & automation_    | 🧹 `.prettierrc.toml`   | Code formatting configuration for Prettier         |
 | _Config & automation_    | ⚙️ `.github/workflows/` | GitHub Actions workflows for automated checks      |
 | _Config & automation_    | 🔗 `.gitmodules`        | Git submodule configuration                        |
+| _Config & automation_    | 🔄 `.renovaterc.json`   | Automated updates for submodules and CDN URLs      |
 
 ## Motivation
 
