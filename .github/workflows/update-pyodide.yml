@@ -1,0 +1,60 @@
+name: Update Pyodide
+
+on:
+  schedule:
+    # Run weekly on Mondays at 10:00 UTC
+    - cron: "0 10 * * 1"
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  update-pyodide:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get latest Pyodide version
+        id: pyodide-version
+        run: |
+          # Get the latest release from Pyodide GitHub API
+          LATEST_VERSION=$(curl -s https://api.github.com/repos/pyodide/pyodide/releases/latest | jq -r '.tag_name')
+          echo "latest_version=$LATEST_VERSION" >> $GITHUB_OUTPUT
+          echo "Latest Pyodide version: $LATEST_VERSION"
+
+      - name: Get current Pyodide version
+        id: current-version
+        run: |
+          # Extract current version from index.xhtml
+          CURRENT_VERSION=$(grep -o 'pyodide/v[0-9]\+\.[0-9]\+\.[0-9]\+' index.xhtml | head -1 | sed 's/pyodide\/v//')
+          echo "current_version=v$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          echo "Current Pyodide version: v$CURRENT_VERSION"
+
+      - name: Update Pyodide version
+        if: steps.pyodide-version.outputs.latest_version != steps.current-version.outputs.current_version
+        run: |
+          LATEST=${{ steps.pyodide-version.outputs.latest_version }}
+          CURRENT=${{ steps.current-version.outputs.current_version }}
+          echo "Updating from $CURRENT to $LATEST"
+
+          # Update the CDN URL in index.xhtml
+          sed -i "s|pyodide/v[0-9]\+\.[0-9]\+\.[0-9]\+|pyodide/$LATEST|g" index.xhtml
+
+          # Verify the change was made
+          grep "pyodide/$LATEST" index.xhtml || exit 1
+
+      - name: Create Pull Request
+        if: steps.pyodide-version.outputs.latest_version != steps.current-version.outputs.current_version
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: update Pyodide to ${{ steps.pyodide-version.outputs.latest_version }}"
+          title: "Update Pyodide to ${{ steps.pyodide-version.outputs.latest_version }}"
+          body: |
+            This automated PR updates Pyodide from ${{ steps.current-version.outputs.current_version }} to ${{ steps.pyodide-version.outputs.latest_version }}.
+
+            Changes:
+            - Updated CDN URL in `index.xhtml` to use Pyodide ${{ steps.pyodide-version.outputs.latest_version }}
+
+            Please review and test before merging.
+          branch: update-pyodide-${{ steps.pyodide-version.outputs.latest_version }}
+          delete-branch: true
