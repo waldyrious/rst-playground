@@ -8,9 +8,36 @@ Try it out at <https://waldyrious.github.io/rst-playground>.
 
 ## How it works
 
-The tool is a simple HTML page with a `<textarea>` and an `<output>` element side-by-side.
+The tool is a simple HTML page with a `<textarea>` and an `<iframe>` element side-by-side.
 It uses [Pyodide](https://pyodide.org) to call [docutils](https://docutils.sourceforge.io)
 to convert plain-text rST-formatted content into HTML-based rich-text.
+
+### Repository structure
+
+The following lists summarize how the repository is organized.
+
+Core application files:
+
+| File/Directory | Purpose                                                   |
+| -------------- | --------------------------------------------------------- |
+| `index.xhtml`  | Main HTML page containing the playground interface        |
+| `script.js`    | JavaScript code that handles rST conversion using Pyodide |
+| `css/`         | Directory containing local and upstream CSS stylesheets   |
+
+Documentation and metadata:
+
+| File         | Purpose                           |
+| ------------ | --------------------------------- |
+| `README.md`  | Project documentation (this file) |
+| `LICENSE.md` | ISC license text                  |
+
+Configuration and automation:
+
+| File/Directory       | Purpose                                       |
+| -------------------- | --------------------------------------------- |
+| `.prettierrc.toml`   | Code formatting configuration for Prettier    |
+| `.github/workflows/` | GitHub Actions workflows for automated checks |
+| `.gitmodules`        | Git submodule configuration                   |
 
 ## Motivation
 
