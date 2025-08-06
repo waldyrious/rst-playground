@@ -2,12 +2,11 @@ version: 2
 updates:
   # Keep Downstyler submodule up to date
   - package-ecosystem: "gitsubmodule"
-    directory: "/"
+    directory: "/vendor"
     schedule:
       interval: "weekly"
       day: "monday"
       time: "09:00"
-    open-pull-requests-limit: 5
     commit-message:
-      prefix: "submodule"
+      prefix: "submodule" # Example: "submodule: bump vendor/downstyler from `abc1234` to `def5678`"
       include: "scope"
