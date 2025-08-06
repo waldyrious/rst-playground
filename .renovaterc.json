@@ -3,19 +3,10 @@
   "extends": ["config:base"],
   "schedule": ["on monday"],
   "timezone": "UTC",
-  "gitSubmodules": {
+  "git-submodules": {
     "enabled": true
   },
-  "regexManagers": [
-    {
-      "fileMatch": ["index.xhtml"],
-      "matchStrings": [
-        "https://cdn\\.jsdelivr\\.net/pyodide/v(?<currentValue>[0-9]+\\.[0-9]+\\.[0-9]+)/pyc/pyodide\\.js"
-      ],
-      "datasourceTemplate": "github-releases",
-      "depNameTemplate": "pyodide/pyodide",
-      "versioningTemplate": "semver",
-      "extractVersionTemplate": "^v(?<version>.*)$"
-    }
-  ]
+  "cdnurl": {
+    "fileMatch": ["index.xhtml"]
+  }
 }
