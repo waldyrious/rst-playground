@@ -16,34 +16,30 @@ to convert plain-text rST-formatted content into HTML-based rich-text.
 
 The repository is organized as follows:
 
-#### Core application files
+Core application files:
 
 | File/Directory       | Purpose                                                      |
 | -------------------- | ------------------------------------------------------------ |
 | `index.xhtml`        | Main HTML page containing the playground interface           |
 | `script.js`          | JavaScript code that handles rST conversion using Pyodide    |
-| `style.css`          | Custom CSS styles for the playground layout                  |
-| `docutils.css`       | CSS styles for the generated HTML output from docutils       |
-| `vendor/downstyler/` | Git submodule providing base CSS styling                     |
+| `css/style.css`      | Custom CSS styles for the playground layout                  |
+| `css/docutils.css`   | CSS styles for the generated HTML output from docutils       |
+| `css/downstyler/`    | Git submodule providing base CSS styling                     |
 
-#### Documentation and metadata
+Documentation and metadata:
 
 | File/Directory | Purpose                            |
 | -------------- | ---------------------------------- |
 | `README.md`    | Project documentation (this file) |
 | `LICENSE.md`   | ISC license text                   |
 
-#### Configuration and automation
+Configuration and automation:
 
 | File/Directory       | Purpose                                                      |
 | -------------------- | ------------------------------------------------------------ |
 | `.prettierrc.toml`   | Code formatting configuration for Prettier                   |
 | `.github/workflows/` | GitHub Actions workflow for automated code formatting checks |
 | `.gitmodules`        | Git submodule configuration                                  |
-
-The core application files are essential for the playground functionality,
-while the documentation and metadata files provide project information,
-and the configuration and automation files support development workflow.
 
 ## Motivation
 

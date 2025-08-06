@@ -73,7 +73,7 @@ async function rstToHtml() {
     const doc = parser.parseFromString(htmlString, "text/html");
     const linkTag = doc.createElement("link");
     linkTag.rel = "stylesheet";
-    linkTag.href = "docutils.css";
+    linkTag.href = "css/docutils.css";
     doc.head.appendChild(linkTag);
     htmlString = "<!DOCTYPE html>\n" + doc.documentElement.outerHTML;
 
