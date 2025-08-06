@@ -116,12 +116,12 @@ the [.prettierrc.toml](.prettierrc.toml) file lists additional rules used in thi
 
 ### Automated updates
 
-The project uses automated workflows to keep dependencies up to date:
+The project uses **Renovate** to keep dependencies up to date:
 
-- **Dependabot** automatically monitors the Downstyler submodule and creates weekly pull requests when updates are available
-- **GitHub Actions** checks for new Pyodide releases weekly and creates pull requests to update the CDN URL in `index.xhtml`
+- Automatically monitors the Downstyler submodule and creates pull requests when updates are available
+- Checks for new Pyodide releases and creates pull requests to update the CDN URL in `index.xhtml`
 
-Both workflows run on Mondays and can also be triggered manually via the GitHub Actions interface.
+Both types of updates are checked weekly on Mondays and can be configured via the `.renovaterc.json` file.
 
 ## License
 
