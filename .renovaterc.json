@@ -2,11 +2,10 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"],
   "schedule": ["on monday"],
-  "timezone": "UTC",
   "git-submodules": {
     "enabled": true
   },
   "cdnurl": {
-    "fileMatch": ["index.xhtml"]
+    "managerFilePatterns": ["index.xhtml"]
   }
 }
