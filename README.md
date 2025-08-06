@@ -18,24 +18,22 @@ The repository is organized as follows:
 
 Core application files:
 
-| File/Directory       | Purpose                                                      |
-| -------------------- | ------------------------------------------------------------ |
-| `index.xhtml`        | Main HTML page containing the playground interface           |
-| `script.js`          | JavaScript code that handles rST conversion using Pyodide    |
-| `css/style.css`      | Custom CSS styles for the playground layout                  |
-| `css/docutils.css`   | CSS styles for the generated HTML output from docutils       |
-| `css/downstyler/`    | Git submodule providing base CSS styling                     |
+| File          | Purpose                                                   |
+| ------------- | --------------------------------------------------------- |
+| `index.xhtml` | Main HTML page containing the playground interface        |
+| `script.js`   | JavaScript code that handles rST conversion using Pyodide |
+| `css/`        | Directory containing CSS styles and styling dependencies  |
 
 Documentation and metadata:
 
-| File/Directory | Purpose                            |
-| -------------- | ---------------------------------- |
-| `README.md`    | Project documentation (this file) |
-| `LICENSE.md`   | ISC license text                   |
+| File         | Purpose                           |
+| ------------ | --------------------------------- |
+| `README.md`  | Project documentation (this file) |
+| `LICENSE.md` | ISC license text                  |
 
 Configuration and automation:
 
-| File/Directory       | Purpose                                                      |
+| File                 | Purpose                                                      |
 | -------------------- | ------------------------------------------------------------ |
 | `.prettierrc.toml`   | Code formatting configuration for Prettier                   |
 | `.github/workflows/` | GitHub Actions workflow for automated code formatting checks |
