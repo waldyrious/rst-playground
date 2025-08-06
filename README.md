@@ -12,6 +12,33 @@ The tool is a simple HTML page with a `<textarea>` and an `<output>` element sid
 It uses [Pyodide](https://pyodide.org) to call [docutils](https://docutils.sourceforge.io)
 to convert plain-text rST-formatted content into HTML-based rich-text.
 
+### Repository structure
+
+The repository is organized as follows:
+
+Core application files:
+
+| File          | Purpose                                                   |
+| ------------- | --------------------------------------------------------- |
+| `index.xhtml` | Main HTML page containing the playground interface        |
+| `script.js`   | JavaScript code that handles rST conversion using Pyodide |
+| `css/`        | Directory containing CSS styles and styling dependencies  |
+
+Documentation and metadata:
+
+| File         | Purpose                           |
+| ------------ | --------------------------------- |
+| `README.md`  | Project documentation (this file) |
+| `LICENSE.md` | ISC license text                  |
+
+Configuration and automation:
+
+| File                 | Purpose                                                      |
+| -------------------- | ------------------------------------------------------------ |
+| `.prettierrc.toml`   | Code formatting configuration for Prettier                   |
+| `.github/workflows/` | GitHub Actions workflow for automated code formatting checks |
+| `.gitmodules`        | Git submodule configuration                                  |
+
 ## Motivation
 
 This project was triggered by the two previous reStructuredText playgrounds
