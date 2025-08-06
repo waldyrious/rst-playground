@@ -114,6 +114,15 @@ make sure you have Node.js installed, and run `npx prettier . --check`
 Besides [Prettier's default configuration](https://prettier.io/docs/options),
 the [.prettierrc.toml](.prettierrc.toml) file lists additional rules used in this project.
 
+### Automated updates
+
+The project uses **Renovate** to keep dependencies up to date:
+
+- Automatically monitors the Downstyler submodule and creates pull requests when updates are available
+- Checks for new Pyodide releases and creates pull requests to update the CDN URL in `index.xhtml`
+
+Both types of updates are checked weekly on Mondays and can be configured via the `.renovaterc.json` file.
+
 ## License
 
 This project is licensed under the [ISC License](LICENSE.md).
