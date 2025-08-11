@@ -14,30 +14,20 @@ to convert plain-text rST-formatted content into HTML-based rich-text.
 
 ### Repository structure
 
-The following lists summarize how the repository is organized.
+The following table summarizes how the repository is organized.
 
-Core application files:
-
-| File/Directory | Purpose                                                   |
-| -------------- | --------------------------------------------------------- |
-| `index.xhtml`  | Main HTML page containing the playground interface        |
-| `script.js`    | JavaScript code that handles rST conversion using Pyodide |
-| `css/`         | Directory containing local and upstream CSS stylesheets   |
-
-Documentation and metadata:
-
-| File         | Purpose                           |
-| ------------ | --------------------------------- |
-| `README.md`  | Project documentation (this file) |
-| `LICENSE.md` | ISC license text                  |
-
-Configuration and automation:
-
-| File/Directory       | Purpose                                       |
-| -------------------- | --------------------------------------------- |
-| `.prettierrc.toml`   | Code formatting configuration for Prettier    |
-| `.github/workflows/` | GitHub Actions workflows for automated checks |
-| `.gitmodules`        | Git submodule configuration                   |
+| Category                 | File/directory          | Purpose                                                   |
+| ------------------------ | -----------------       | --------------------------------------------------------- |
+| _Core application files_ | 📄 `index.xhtml`        | Main HTML page containing the playground interface        |
+| _Core application files_ | 📜 `script.js`          | JavaScript code that handles rST conversion using Pyodide |
+| _Core application files_ | 🎨 `css/`               | Directory containing local and upstream CSS stylesheets   |
+| ─── ⋄ ───                | ─── ⋄ ───               | ─── ⋄ ───                                                 |
+| _Docs & metadata_        | 📖 `README.md`          | Project documentation (this file)                         |
+| _Docs & metadata_        | ⚖️ `LICENSE.md`         | ISC license text                                          |
+| ─── ⋄ ───                | ─── ⋄ ───               | ─── ⋄ ───                                                 |
+| _Config & automation_    | 🧹 `.prettierrc.toml`   | Code formatting configuration for Prettier                |
+| _Config & automation_    | ⚙️ `.github/workflows/` | GitHub Actions workflows for automated checks             |
+| _Config & automation_    | 🔗 `.gitmodules`        | Git submodule configuration                               |
 
 ## Motivation
 
