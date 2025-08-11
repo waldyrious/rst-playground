@@ -16,18 +16,18 @@ to convert plain-text rST-formatted content into HTML-based rich-text.
 
 The following table summarizes how the repository is organized.
 
-| Category                 | File/directory          | Purpose                                                   |
-| ------------------------ | -----------------       | --------------------------------------------------------- |
-| _Core application files_ | 📄 `index.xhtml`        | Main HTML page containing the playground interface        |
-| _Core application files_ | 📜 `script.js`          | JavaScript code that handles rST conversion using Pyodide |
-| _Core application files_ | 🎨 `css/`               | Directory containing local and upstream CSS stylesheets   |
-| ─── ⋄ ───                | ─── ⋄ ───               | ─── ⋄ ───                                                 |
-| _Docs & metadata_        | 📖 `README.md`          | Project documentation (this file)                         |
-| _Docs & metadata_        | ⚖️ `LICENSE.md`         | ISC license text                                          |
-| ─── ⋄ ───                | ─── ⋄ ───               | ─── ⋄ ───                                                 |
-| _Config & automation_    | 🧹 `.prettierrc.toml`   | Code formatting configuration for Prettier                |
-| _Config & automation_    | ⚙️ `.github/workflows/` | GitHub Actions workflows for automated checks             |
-| _Config & automation_    | 🔗 `.gitmodules`        | Git submodule configuration                               |
+| Category                 | File/directory          | Purpose                                            |
+| ------------------------ | -----------------       | -------------------------------------------------- |
+| _Core application files_ | 📄 `index.xhtml`        | Main HTML page containing the playground interface |
+| _Core application files_ | 📜 `script.js`          | JavaScript to convert rST→HTML using Pyodide       |
+| _Core application files_ | 🎨 `css/`               | Directory with local and upstream CSS stylesheets  |
+| ─── ✴ ───                | ─── ✴ ───               | ─── ✴ ───                                          |
+| _Docs & metadata_        | 📖 `README.md`          | Project documentation (this file)                  |
+| _Docs & metadata_        | ⚖️ `LICENSE.md`         | ISC license text                                   |
+| ─── ✴ ───                | ─── ✴ ───               | ─── ✴ ───                                          |
+| _Config & automation_    | 🧹 `.prettierrc.toml`   | Code formatting configuration for Prettier         |
+| _Config & automation_    | ⚙️ `.github/workflows/` | GitHub Actions workflows for automated checks      |
+| _Config & automation_    | 🔗 `.gitmodules`        | Git submodule configuration                        |
 
 ## Motivation
 
