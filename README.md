@@ -16,8 +16,9 @@ to convert plain-text rST-formatted content into HTML-based rich-text.
 
 The following table summarizes how the repository is organized.
 
+<!-- prettier-ignore -->
 | Category                 | File/directory          | Purpose                                            |
-| ------------------------ | -----------------       | -------------------------------------------------- |
+| ------------------------ | ----------------------- | -------------------------------------------------- |
 | _Core application files_ | 📄 `index.xhtml`        | Main HTML page containing the playground interface |
 | _Core application files_ | 📜 `script.js`          | JavaScript to convert rST→HTML using Pyodide       |
 | _Core application files_ | 🎨 `css/`               | Directory with local and upstream CSS stylesheets  |
