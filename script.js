@@ -68,12 +68,12 @@ async function rstToHtml() {
       publish_string(input_text, writer_name="html5").decode("utf-8")
     `);
 
-    // Modify the output HTML string to include the docutils.css file.
+    // Modify the output HTML string to include the docutils-iframe.css file.
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlString, "text/html");
     const linkTag = doc.createElement("link");
     linkTag.rel = "stylesheet";
-    linkTag.href = "css/docutils.css";
+    linkTag.href = "css/docutils-iframe.css";
     doc.head.appendChild(linkTag);
     htmlString = "<!DOCTYPE html>\n" + doc.documentElement.outerHTML;
 
