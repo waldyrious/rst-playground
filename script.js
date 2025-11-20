@@ -8,6 +8,9 @@ if (!("WebAssembly" in window)) {
   outputFrame.srcdoc = pre.outerHTML;
 }
 
+// Set up input textarea to trigger conversion whenever its content changes (typing, pasting, etc.)
+inputTextarea.addEventListener("input", debouncedConvert);
+
 // Activate controls that are inert if JavaScript is disabled
 inputTextarea.disabled = false;
 inputTextarea.placeholder = "Enter reStructuredText content here.";
@@ -28,9 +31,6 @@ async function main() {
   return pyodide;
 }
 let pyodideReadyPromise = main();
-
-// Trigger rendering whenever the textarea content changes (typing, pasting, etc.)
-inputTextarea.addEventListener("input", debouncedConvert);
 
 // Define the conversion delay timer outside the delaying function itself
 // so it can be reused (i.e. reset) across function calls.
