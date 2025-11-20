@@ -38,8 +38,6 @@ The following table summarizes how the repository is organized.
 
 ## Motivation
 
-## Motivation
-
 **TL;DR:** This project was triggered by the two well-known reStructuredText playgrounds
 — [rst.ninjs.org](http://rst.ninjs.org)
 <sup>[[src](https://github.com/anru/rsted)]</sup>
