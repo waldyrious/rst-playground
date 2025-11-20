@@ -6,8 +6,8 @@ without needing to set up a server or install any software.
 
 Try it out at <https://waldyrious.github.io/rst-playground>.
 
-| Screenshot |
-| ---------- |
+| Screenshot                                      |
+| ----------------------------------------------- |
 | ![Screenshot of rst-playground](screenshot.png) |
 
 ## How it works
@@ -18,25 +18,23 @@ to convert plain-text rST-formatted content into HTML-based rich-text.
 
 ### Repository structure
 
-The following table summarizes how the repository is organized.
+The following is an overview of how the repository is organized.
 
-<!-- prettier-ignore -->
-| Category                 | File/directory          | Purpose                                            |
-| ------------------------ | ----------------------- | -------------------------------------------------- |
-| _Core application files_ | 📄 `index.xhtml`        | Main HTML page containing the playground interface |
-| _Core application files_ | 📜 `script.js`          | JavaScript to convert rST→HTML using Pyodide       |
-| _Core application files_ | 🎨 `css/`               | Directory with local and upstream CSS stylesheets  |
-| ─── ⋄ ───                | ─── ⋄ ───               | ─── ⋄ ───                                          |
-| _Docs & metadata_        | 📖 `README.md`          | Project documentation (this file)                  |
-| _Docs & metadata_        | 🖼️ `screenshot.png`     | Screenshot of the playground                       |
-| _Docs & metadata_        | ⚖️ `LICENSE.md`         | ISC license text                                   |
-| ─── ⋄ ───                | ─── ⋄ ───               | ─── ⋄ ───                                          |
-| _Config & automation_    | 🧹 `.prettierrc.toml`   | Code formatting configuration for Prettier         |
-| _Config & automation_    | ⚙️ `.github/workflows/` | GitHub Actions workflows for automated checks      |
-| _Config & automation_    | 🔗 `.gitmodules`        | Git submodule configuration                        |
-| _Config & automation_    | 🔄 `.renovaterc.json`   | Automated updates for submodules and CDN URLs      |
+_[Core application files]_<br/>
+&ensp;📄 `index.xhtml` — Main HTML page containing the playground interface<br/>
+&ensp;📜 `script.js` — JavaScript to convert rST→HTML using Pyodide<br/>
+&ensp;🎨 `css/` — Directory with local and upstream CSS stylesheets<br/>
 
-## Motivation
+_[Docs & metadata]_<br/>
+&ensp;📖 `README.md` — Project documentation (this file)<br/>
+&ensp;🖼️ `screenshot.png` — Screenshot of the playground<br/>
+&ensp;⚖️ `LICENSE.md` — ISC license text<br/>
+
+_[Config & automation]_<br/>
+&ensp;🧹 `.prettierrc.toml` — Code formatting configuration for Prettier<br/>
+&ensp;⚙️ `.github/workflows/` — GitHub Actions workflows for automated checks<br/>
+&ensp;🔗 `.gitmodules` — Git submodule configuration<br/>
+&ensp;🔄 `.renovaterc.json` — Automated updates for submodules and CDN URLs<br/>
 
 ## Motivation
 
