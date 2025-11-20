@@ -6,8 +6,8 @@ without needing to set up a server or install any software.
 
 Try it out at <https://waldyrious.github.io/rst-playground>.
 
-| Screenshot |
-| ---------- |
+| Screenshot                                      |
+| ----------------------------------------------- |
 | ![Screenshot of rst-playground](screenshot.png) |
 
 ## How it works
