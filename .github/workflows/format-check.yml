@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "24" # Current LTS version
+          node-version: "24" # Current LTS version, until April 2026 — see https://endoflife.date/nodejs
 
       - name: Check code formatting with Prettier
         run: npx prettier@3.6.2 --check . '!css/downstyler'
