@@ -1,0 +1,25 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "prConcurrentLimit": 1,
+  "git-submodules": {
+    enabled: true,
+  },
+  "cdnurl": {
+    managerFilePatterns: ["index.xhtml"],
+  },
+  "packageRules": [
+    {
+      matchManagers: ["github-actions"],
+      groupName: "GitHub Actions",
+    },
+    {
+      matchManagers: ["git-submodules"],
+      groupName: "git submodules",
+    },
+    {
+      matchManagers: ["cdnurl"],
+      groupName: "CDN URLs",
+    },
+  ],
+}
