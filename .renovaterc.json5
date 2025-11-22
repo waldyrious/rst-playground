@@ -1,13 +1,33 @@
 {
+  // Renovate configuration reference:
+  // https://docs.renovatebot.com/configuration-options
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+
+  // Extend Renovate's default configuration:
+  // https://docs.renovatebot.com/presets-config/#configrecommended
   "extends": ["config:recommended"],
+
+  // Only open one PR at a time, since we're tying to keep a semi-linear git history:
+  // https://www.bitsnbites.eu/a-tidy-linear-git-history/
+  // Multiple concurrent PRs would require rebasing the later ones
+  // to avoid overlapping edges in the git commit graph.
+  // https://docs.renovatebot.com/configuration-options/#prconcurrentlimit
   "prConcurrentLimit": 1,
+
+  // Support upgrading dependencies specified as git submodules:
+  // https://docs.renovatebot.com/modules/manager/git-submodules/
   "git-submodules": {
     enabled: true,
   },
+
+  // Support upgrading dependencies specified as CDN URLs (cdnjs only):
+  // https://docs.renovatebot.com/modules/manager/cdnurl/
   "cdnurl": {
     managerFilePatterns: ["index.xhtml"],
   },
+
+  // Batch updates of the same type into a single PR:
+  // https://docs.renovatebot.com/noise-reduction/#package-grouping
   "packageRules": [
     {
       matchManagers: ["github-actions"],
