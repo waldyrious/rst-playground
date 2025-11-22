@@ -31,14 +31,17 @@
     {
       matchManagers: ["github-actions"],
       groupName: "GitHub Actions",
+      schedule: "monthly",
     },
     {
       matchManagers: ["git-submodules"],
       groupName: "git submodules",
+      schedule: "at any time",
     },
     {
       matchManagers: ["cdnurl"],
       groupName: "CDN URLs",
+      schedule: "monthly",
     },
   ],
 }
