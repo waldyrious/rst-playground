@@ -1,0 +1,47 @@
+{
+  // Renovate configuration reference:
+  // https://docs.renovatebot.com/configuration-options
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+
+  // Extend Renovate's default configuration:
+  // https://docs.renovatebot.com/presets-config/#configrecommended
+  "extends": ["config:recommended"],
+
+  // Always rebase PRs, rather than just if there are git conflicts:
+  // https://docs.renovatebot.com/configuration-options/#rebasewhen
+  // This is to allow semi-linear git history:
+  // https://www.bitsnbites.eu/a-tidy-linear-git-history/
+  "rebaseWhen": "behind-base-branch",
+
+  // Support upgrading dependencies specified as git submodules:
+  // https://docs.renovatebot.com/modules/manager/git-submodules/
+  "git-submodules": {
+    enabled: true,
+  },
+
+  // Support upgrading dependencies specified as CDN URLs (cdnjs only):
+  // https://docs.renovatebot.com/modules/manager/cdnurl/
+  "cdnurl": {
+    managerFilePatterns: ["index.xhtml"],
+  },
+
+  // Batch updates of the same type into a single PR:
+  // https://docs.renovatebot.com/noise-reduction/#package-grouping
+  "packageRules": [
+    {
+      matchManagers: ["github-actions"],
+      groupName: "GitHub Actions",
+      schedule: "monthly",
+    },
+    {
+      matchManagers: ["git-submodules"],
+      groupName: "git submodules",
+      schedule: "at any time",
+    },
+    {
+      matchManagers: ["cdnurl"],
+      groupName: "CDN URLs",
+      schedule: "monthly",
+    },
+  ],
+}
