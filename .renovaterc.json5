@@ -7,12 +7,11 @@
   // https://docs.renovatebot.com/presets-config/#configrecommended
   "extends": ["config:recommended"],
 
-  // Only open one PR at a time, since we're tying to keep a semi-linear git history:
+  // Always rebase PRs, rather than just if there are git conflicts:
+  // https://docs.renovatebot.com/configuration-options/#rebasewhen
+  // This is to allow semi-linear git history:
   // https://www.bitsnbites.eu/a-tidy-linear-git-history/
-  // Multiple concurrent PRs would require rebasing the later ones
-  // to avoid overlapping edges in the git commit graph.
-  // https://docs.renovatebot.com/configuration-options/#prconcurrentlimit
-  "prConcurrentLimit": 1,
+  "rebaseWhen": "behind-base-branch",
 
   // Support upgrading dependencies specified as git submodules:
   // https://docs.renovatebot.com/modules/manager/git-submodules/
