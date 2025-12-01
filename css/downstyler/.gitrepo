@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/waldyrious/downstyler.git
+	branch = master
+	commit = 4c681a41d852381fae0fc476faaefcccaf616c44
+	parent = 44b189b014f030ba83866e45e889eea1791e7250
+	method = merge
+	cmdver = 0.4.9
