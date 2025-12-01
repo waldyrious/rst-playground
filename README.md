@@ -33,6 +33,7 @@ _[Docs & metadata]_<br/>
 _[Config & automation]_<br/>
 &ensp;🧹 `.prettierrc.toml` — Code formatting configuration for Prettier<br/>
 &ensp;⚙️ `.github/workflows/` — GitHub Actions workflows for automated checks<br/>
+&ensp;🧹 `.githooks/pre-commit.sh` — Git pre-commit hook for code formatting<br/>
 &ensp;🔗 `.gitmodules` — Git submodule configuration<br/>
 &ensp;🔄 `.renovaterc.json` — Automated updates for submodules and CDN URLs<br/>
 
@@ -147,6 +148,9 @@ Then, your version of the tool will be available at `https://<your-username>.git
 #### Code formatting
 
 Code formatting is automatically checked on all pull requests using [Prettier](https://prettier.io/).
+Besides [Prettier's default configuration](https://prettier.io/docs/options),
+the [.prettierrc.toml](.prettierrc.toml) file lists additional rules used in this project.
+
 If you would like to check the syntax of new code locally before submitting a PR,
 make sure you have [Node.js installed](https://nodejs.org/en/download),
 and run the same command defined in the [workflow](.github/workflows/format-check.yml):
@@ -155,8 +159,13 @@ and run the same command defined in the [workflow](.github/workflows/format-chec
 npx prettier --check . '!css/downstyler'
 ```
 
-Besides [Prettier's default configuration](https://prettier.io/docs/options),
-the [.prettierrc.toml](.prettierrc.toml) file lists additional rules used in this project.
+Alternatively, you can set up git to automatically run the [pre-commit hook](.githooks/pre-commit.sh)
+that formats files before each commit.
+To enable it, run the following command once after cloning the repository:
+
+```shell
+git config core.hooksPath .githooks
+```
 
 ## License
 
