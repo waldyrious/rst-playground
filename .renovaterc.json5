@@ -1,9 +1,9 @@
 {
-  // Renovate configuration reference:
+  // JSON Schema for this file. For a human-readable equivalent, see:
   // https://docs.renovatebot.com/configuration-options
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
 
-  // Extend Renovate's default configuration:
+  // Use Renovate's default configuration as a base:
   // https://docs.renovatebot.com/presets-config/#configrecommended
   "extends": ["config:recommended"],
 
