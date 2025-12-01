@@ -19,11 +19,16 @@
     enabled: true,
   },
 
-  // Support upgrading dependencies specified as CDN URLs (cdnjs only):
-  // https://docs.renovatebot.com/modules/manager/cdnurl/
-  "cdnurl": {
-    managerFilePatterns: ["index.xhtml"],
-  },
+  // Support upgrading Pyodide's jsDelivr URL using a custom manager:
+  // https://docs.renovatebot.com/modules/manager/regex/
+  "customManagers": [
+    {
+      customType: "regex",
+      managerFilePatterns: ["index.xhtml"],
+      datasourceTemplate: "npm",
+      matchStrings: ["cdn\\.jsdelivr\\.net/(?<packageName>pyodide)/v(?<currentValue>[0-9\\.]+)/"],
+    },
+  ],
 
   // Batch updates of the same type into a single PR:
   // https://docs.renovatebot.com/noise-reduction/#package-grouping
@@ -39,8 +44,8 @@
       schedule: "at any time",
     },
     {
-      matchManagers: ["cdnurl"],
-      groupName: "CDN URLs",
+      matchPackageNames: ["pyodide"],
+      groupName: "Pyodide",
       schedule: "monthly",
     },
   ],
