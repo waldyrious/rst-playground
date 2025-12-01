@@ -1,0 +1,27 @@
+#!/bin/sh
+
+echo "Running Prettier to validate formatting..."
+
+# Temporarily stash unstaged changes to only check what's about to be committed.
+# The --keep-index option prevents the staged changes from being stashed;
+# these are the only changes that we want to validate with Prettier.
+git stash --keep-index --include-untracked --quiet
+
+# Run Prettier on the staged changes.
+# We capture the exit code to use it later.
+npx prettier --log-level silent --check . '!css/downstyler'
+PRETTIER_EXIT_CODE=$?
+
+# Restore the previously stashed changes.
+git stash pop --quiet
+
+# Exit with the captured exit code from Prettier.
+# If Prettier found issues (non-zero exit code), it will prevent the commit.
+if [ $PRETTIER_EXIT_CODE -ne 0 ]; then
+  echo "⛔️ Prettier check failed. Run Prettier to fix the staged files before committing:"
+  echo "    npx prettier --write . '!css/downstyler'"
+  exit $PRETTIER_EXIT_CODE
+fi
+
+echo "✅ Prettier check passed."
+exit 0
