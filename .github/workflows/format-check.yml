@@ -11,12 +11,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
-          node-version: "24" # Current LTS version, until April 2026 — see https://endoflife.date/nodejs
+          node-version: "26" # Current LTS version, until April 2026 — see https://endoflife.date/nodejs
 
       - name: Check code formatting with Prettier
         run: npx prettier@3.6.2 --check . '!css/downstyler'
